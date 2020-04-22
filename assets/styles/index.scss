@@ -17,3 +17,28 @@
 .failure {
   color: red;
 }
+
+.board-box {
+  border: 4px solid black;
+  background-color: light-grey;
+  align-items: center;
+  display: flex;
+  height: 120px;
+  justify-content: center;
+}
+
+.board-box:hover {
+    border: 4px solid white;
+    cursor: pointer;
+  }
+
+
+main {
+  background-color: grey;
+}
+
+.gameboard {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}

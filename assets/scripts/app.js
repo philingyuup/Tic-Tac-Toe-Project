@@ -7,9 +7,11 @@ const userEvents = require("./users/events.js")
 // use require without a reference to ensure a file is bundled
 // require('./example')
 
+$('.board-box').on('click', () => {console.log("clicks")})
+
 $(() => {
   $('#sign-up').on("submit", userEvents.signUp),
   $('#sign-in').on("submit", userEvents.signIn),
-  $('#sign-out').on('click', userEvents.signOut)
+  $('#sign-out').on('click', userEvents.signOut),
   $('#changepw').on('submit', userEvents.changePassword)
 })
