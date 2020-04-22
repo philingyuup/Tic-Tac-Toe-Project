@@ -12,6 +12,36 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+      <header id="title" class="container stick-top">
+        <div class="row align-items-start">
+          <h1>Tic Tac Toe</h1>
+          <button id="sign-out" class="btn btn-outline-primary d-flex justify-content-end"> sign out </button>
+        </div>
+      </header>
+      <nav id="left-side-bar" class="container">
+        <div class="row justify-content-start">
+          <div class="col-4">
+            <div class="row">
+              <div class="col-2"> play </div>
+              <div class="w-100"></div>
+              <div class="col-2">log </div>
+              <div class="w-100"></div>
+              <div class="col-2"> settings </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main class="container">
+        <div class="row">
+          <div class="col-4">
+            <form id="sign-up">
+              <input required name="credentials[email]" type="text" value="you@example.com">
+              <input required name="credentials[password]" type="password" value="password">
+              <input required name="credentials[password_confirmation]" type="password" value="confirm password">
+              <button type="submit"> sign-up </button>
+            </form>
+          </div>
+        </div>
+      </main>
     </body>
 </html>
