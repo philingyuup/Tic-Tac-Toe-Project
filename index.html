@@ -31,15 +31,28 @@
           </div>
         </div>
       </nav>
-      <main class="container">
-        <div class="row">
-          <div class="col-4">
-            <form id="sign-up">
-              <input required name="credentials[email]" type="text" value="you@example.com">
-              <input required name="credentials[password]" type="password" value="password">
-              <input required name="credentials[password_confirmation]" type="password" value="confirm password">
-              <button type="submit"> sign-up </button>
-            </form>
+      <main>
+        <div id="user-login" class="container">
+          <div class="row">
+            <div class="col-4">
+              <div id="user-message"> </div>
+              <form id="sign-in">
+                <input required name="credentials[email]" type="text" placeholder="you@example.com">
+                <input required name="credentials[password]" type="password" placeholder="password">
+                <button type="submit"> sign-in </button>
+              </form>
+              <form id="sign-up">
+                <input required name="credentials[email]" type="text" placeholder="you@example.com">
+                <input required name="credentials[password]" type="password" placeholder="password">
+                <input required name="credentials[password_confirmation]" type="password" placeholder="confirm password">
+                <button type="submit"> sign-up </button>
+              </form>
+              <form id="changepw">
+                <input required name="passwords[old]" type="password" placeholder="old password">
+                <input required name="passwords[new]" type="password" placeholder="new password">
+                <button type="submit"> change password </button>
+              </form>
+            </div
           </div>
         </div>
       </main>
