@@ -59,6 +59,13 @@ const checkWinner = (index, userMove) => {
       }
     }
   }
+  const drawCheck = $('.board-box').toArray()
+  const draw = []
+  for (let i = 0; i < drawCheck.length; i++) {
+    draw.push(drawCheck[i].innerHTML)
+  }
+  if (!draw.some(piece => piece == ""))
+    return true
 }
 
 module.exports = {
