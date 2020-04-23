@@ -2,6 +2,21 @@ const storage = require('../store.js')
 
 let move = 'X'
 
+let checkMove = num => {
+  return $(`.board-box[data-cell-index="${num}"]`).html()
+}
+
+let winningPermutations = [
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  [2,4,6],
+  [0,4,8]
+]
+
 const emptyBoard = () => {
   $('#gameboard').empty()
   $('#gameboard').append(`
@@ -22,25 +37,27 @@ const emptyBoard = () => {
 
 const playMove = event => {
   const block = event.target
+  const index = +block.dataset.cellIndex
   if ($(block).text() === "" || null) {
     $(block).text(move)
+    if (checkWinner(index, move)) {
+      // console.log("end game")
+    } else {
     move === 'X' ? move = 'O' : move = 'X'
     $(block).css("cursor", "not-allowed")
+    }
   }
 }
 
-const checkWinner = () => {
-  //starting at 0,3,6
-  //if n === n++ === n++
-
-  //starting at 0,1,2
-  //if n === n+=3 === n+=3
-
-  //starting at 0
-  //if n === n+=4 === n+=4
-
-  //starting at 2
-  //if n === n+=2 === n+=2
+const checkWinner = (index, move) => {
+  for (let i = 0; i < winningPermutations.length; i++) {
+    const currentPerm = winningPermutations[i]
+    if (currentPerm.includes(index)) {
+      if (currentPerm.every(piece => checkMove(piece) == move)) {
+        return true
+      }
+    }
+  }
 }
 
 module.exports = {
