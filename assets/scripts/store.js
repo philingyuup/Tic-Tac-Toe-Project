@@ -3,7 +3,7 @@
 const userStore = {
 }
 
-let gameStore ={
+const gameStore ={
 }
 
 

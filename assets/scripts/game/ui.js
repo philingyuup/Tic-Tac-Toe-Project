@@ -1,8 +1,51 @@
-//starting at 0,3,6
-//if n === n+1 === n+2
-//starting at 0,1,2
-//if n === n+3 === n+6
-//starting at 0
-//if n === n+=4 === n+=4
-//starting at 2
-//if n === n+=2 === n+=2
+'use strict'
+const storage = require('../store.js')
+
+const createGameSuccess = gameData => {
+  storage.game = gameData
+  $('#gameboard').empty()
+  $('#gameboard').append(`
+  <div data-cell-index='0' class="col-3 board-box"></div>
+  <div data-cell-index='1' class="col-3 board-box"></div>
+  <div data-cell-index='2' class="col-3 board-box"></div>
+  <div class="w-100"></div>
+  <div data-cell-index='3' class="col-3 board-box"></div>
+  <div data-cell-index='4' class="col-3 board-box"></div>
+  <div data-cell-index='5' class="col-3 board-box"></div>
+  <div class="w-100"></div>
+  <div data-cell-index='6' class="col-3 board-box"></div>
+  <div data-cell-index='7' class="col-3 board-box"></div>
+  <div data-cell-index='8' class="col-3 board-box"></div>
+  <div class="w-100"></div>`)
+  $('.board-box').css("cursor","pointer")
+  $('#user-message').text('Create Game Success!')
+  $('#user-message').removeClass()
+  $('#user-message').addClass('success')
+}
+
+const createGameFailure = error => {
+  $('#user-message').text('Create Game Failed! Please Log-In!')
+  $('#user-message').removeClass()
+  $('#user-message').addClass('failure')
+}
+
+const updateGameSuccess = gameData => {
+  storage.game = gameData
+  console.log(storage.game)
+  $('#user-message').text('Update Game Success!')
+  $('#user-message').removeClass()
+  $('#user-message').addClass('success')
+}
+
+const updateGameFailure = error => {
+  $('#user-message').text('Update Game Failed')
+  $('#user-message').removeClass()
+  $('#user-message').addClass('failure')
+}
+
+module.exports = {
+  createGameSuccess: createGameSuccess,
+  createGameFailure: createGameFailure,
+  updateGameSuccess: updateGameSuccess,
+  updateGameFailure: updateGameFailure
+}

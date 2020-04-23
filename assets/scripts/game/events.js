@@ -1,6 +1,11 @@
+'use strict'
+
 const storage = require('../store.js')
+const gameApi = require('./api.js')
+const gameUi = require('./ui.js')
 
 let move = 'X'
+let gameOver = false
 
 let checkMove = num => {
   return $(`.board-box[data-cell-index="${num}"]`).html()
@@ -17,43 +22,39 @@ let winningPermutations = [
   [0,4,8]
 ]
 
-const emptyBoard = () => {
-  $('#gameboard').empty()
-  $('#gameboard').append(`
-  <div data-cell-index='0' class="col-3 board-box"></div>
-  <div data-cell-index='1' class="col-3 board-box"></div>
-  <div data-cell-index='2' class="col-3 board-box"></div>
-  <div class="w-100"></div>
-  <div data-cell-index='3' class="col-3 board-box"></div>
-  <div data-cell-index='4' class="col-3 board-box"></div>
-  <div data-cell-index='5' class="col-3 board-box"></div>
-  <div class="w-100"></div>
-  <div data-cell-index='6' class="col-3 board-box"></div>
-  <div data-cell-index='7' class="col-3 board-box"></div>
-  <div data-cell-index='8' class="col-3 board-box"></div>
-  <div class="w-100"></div>`)
-  $('.board-box').css("cursor","pointer")
+const createBoard = () => {
+  move = 'X'
+  gameOver = false
+  gameApi.createGame()
+    .then(gameUi.createGameSuccess)
+    .catch(gameUi.createGameFailure)
 }
 
 const playMove = event => {
   const block = event.target
   const index = +block.dataset.cellIndex
-  if ($(block).text() === "" || null) {
+  if ($(block).text() === "" && $(block).css("cursor") !== "not-allowed") {
     $(block).text(move)
     if (checkWinner(index, move)) {
-      // console.log("end game")
-    } else {
+      $('.board-box').css("cursor", "not-allowed")
+      gameOver = true
+    }
+    gameApi.updateGame(index, move, gameOver)
+      .then(gameUi.updateGameSuccess)
+      .catch(gameUi.updateGameFailure)
+    if (!gameOver) {
     move === 'X' ? move = 'O' : move = 'X'
     $(block).css("cursor", "not-allowed")
     }
   }
+
 }
 
-const checkWinner = (index, move) => {
+const checkWinner = (index, userMove) => {
   for (let i = 0; i < winningPermutations.length; i++) {
     const currentPerm = winningPermutations[i]
     if (currentPerm.includes(index)) {
-      if (currentPerm.every(piece => checkMove(piece) == move)) {
+      if (currentPerm.every(piece => checkMove(piece) == userMove)) {
         return true
       }
     }
@@ -62,5 +63,5 @@ const checkWinner = (index, move) => {
 
 module.exports = {
   playMove: playMove,
-  emptyBoard: emptyBoard
+  createBoard: createBoard
 }
