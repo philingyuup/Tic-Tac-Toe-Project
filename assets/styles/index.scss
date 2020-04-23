@@ -10,10 +10,37 @@
   margin-left: 10px;
 }
 
+#sign-out {
+  float: right;
+}
+
 .success {
   color: green;
 }
 
 .failure {
   color: red;
+}
+
+.board-box {
+  border: 4px solid black;
+  background-color: grey;
+  align-items: center;
+  display: flex;
+  height: 120px;
+  justify-content: center;
+}
+
+.board-box:hover {
+    border: 4px solid white;
+  }
+
+.gameboard {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+#create-board {
+  margin-top: 10px;
 }

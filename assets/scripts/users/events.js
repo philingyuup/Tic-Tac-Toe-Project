@@ -10,6 +10,7 @@ const signUp = event => {
   userApi.signUp(formFields)
     .then(userUi.signUpSuccess)
     .catch(userUi.signUpFailure)
+  $('form').trigger('reset')
 }
 
 const signIn = event => {
@@ -19,6 +20,7 @@ const signIn = event => {
   userApi.signIn(formFields)
     .then(userUi.signInSuccess)
     .catch(userUi.signInFailure)
+  $('form').trigger('reset')
 }
 
 const signOut = () => {
@@ -35,6 +37,7 @@ const changePassword = event => {
   userApi.changePassword(formFields)
     .then(userUi.changePasswordSuccess)
     .catch(userUi.changePasswordFailure)
+  $('form').trigger('reset')
 }
 
 module.exports = {

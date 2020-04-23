@@ -15,7 +15,7 @@
       <header id="title" class="container stick-top">
         <div class="row align-items-start">
           <h1>Tic Tac Toe</h1>
-          <button id="sign-out" class="btn btn-outline-primary d-flex justify-content-end"> sign out </button>
+          <button id="sign-out" class="btn btn-outline-primary"> sign out </button>
         </div>
       </header>
       <nav id="left-side-bar" class="container">
@@ -32,8 +32,8 @@
         </div>
       </nav>
       <main>
-        <div id="user-login" class="container">
-          <div class="row">
+        <div class="container">
+          <div id="user-login" class="row">
             <div class="col-4">
               <div id="user-message"> </div>
               <form id="sign-in">
@@ -52,7 +52,12 @@
                 <input required name="passwords[new]" type="password" placeholder="new password">
                 <button type="submit"> change password </button>
               </form>
-            </div
+            </div>
+          </div>
+          <div id="gameboard" class="row justify-content-center">
+          </div>
+          <div class="row justify-content-center">
+            <button id="create-board" class="btn-default"> New Board </button>
           </div>
         </div>
       </main>
