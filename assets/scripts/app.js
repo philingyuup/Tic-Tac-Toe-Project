@@ -13,5 +13,6 @@ $(() => {
   $('#sign-in').on("submit", userEvents.signIn),
   $('#sign-out').on('click', userEvents.signOut),
   $('#changepw').on('submit', userEvents.changePassword),
-  $('.board-box').on('click', gameEvents.playMove)
+  $('#create-board').on('click', gameEvents.emptyBoard),
+  $('#gameboard').delegate(".board-box","click",gameEvents.playMove)
 })
