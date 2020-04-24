@@ -3,11 +3,10 @@
 const userStore = {
 }
 
-const gameStore ={
+const gameStore = {
 }
 
 const gameLog = {
-
 }
 
 module.exports = {

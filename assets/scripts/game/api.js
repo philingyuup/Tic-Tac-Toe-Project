@@ -6,7 +6,7 @@ const url = require('../config.js')
 const createGame = () => {
   return $.ajax({
     url: url.apiUrl + '/games',
-    method: "POST",
+    method: 'POST',
     headers: {
       Authorization: 'Token token=' + storage.store.user.token
     },
@@ -17,17 +17,17 @@ const createGame = () => {
 const updateGame = (index, move, overStatus) => {
   return $.ajax({
     url: url.apiUrl + '/games/' + storage.game.game.id,
-    method: "PATCH",
+    method: 'PATCH',
     headers: {
-      Authorization: "Token token=" + storage.store.user.token
+      Authorization: 'Token token=' + storage.store.user.token
     },
     data: {
-      "game": {
-        "cell": {
-          "index": index,
-          "value": move
+      'game': {
+        'cell': {
+          'index': index,
+          'value': move
         },
-        "over": overStatus
+        'over': overStatus
       }
     }
   })
@@ -38,7 +38,7 @@ const indexGame = id => {
     url: url.apiUrl + '/games/' + id,
     method: 'GET',
     headers: {
-      Authorization: "Token token=" + storage.store.user.token
+      Authorization: 'Token token=' + storage.store.user.token
     }
   })
 }
@@ -49,7 +49,7 @@ const gameLog = data => {
     url: url.apiUrl + '/games/' + data.id + '?over=' + data.gameStatus,
     method: 'GET',
     headers: {
-      Authorization: "Token token=" + storage.store.user.token
+      Authorization: 'Token token=' + storage.store.user.token
     }
   })
 }
@@ -60,6 +60,5 @@ module.exports = {
   gameLog: gameLog,
   indexGame: indexGame
 }
-
 
 // {id: "12312312", gameStatus: trueee}

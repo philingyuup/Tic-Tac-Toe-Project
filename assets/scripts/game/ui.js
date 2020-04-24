@@ -70,7 +70,6 @@ const gameLogFailure = error => {
   $('#user-message').addClass('failure')
 }
 
-
 module.exports = {
   createGameSuccess: createGameSuccess,
   createGameFailure: createGameFailure,

@@ -1,14 +1,13 @@
 'use strict'
 
 const getFormFields = require('../../../lib/get-form-fields.js')
-const storage = require('../store.js')
 const gameApi = require('./api.js')
 const gameUi = require('./ui.js')
 
 let move = 'X'
 let gameOver = false
 
-let checkMove = num => {
+const checkMove = num => {
   return $(`.board-box[data-cell-index="${num}"]`).html()
 }
 
@@ -34,18 +33,18 @@ const createBoard = () => {
 const playMove = event => {
   const block = event.target
   const index = +block.dataset.cellIndex
-  if ($(block).text() === "" && $(block).css("cursor") !== "not-allowed") {
+  if ($(block).text() === '' && $(block).css('cursor') !== 'not-allowed') {
     $(block).text(move)
     if (checkWinner(index, move)) {
-      $('.board-box').css("cursor", "not-allowed")
+      $('.board-box').css('cursor', 'not-allowed')
       gameOver = true
     }
     gameApi.updateGame(index, move, gameOver)
       .then(gameUi.updateGameSuccess)
       .catch(gameUi.updateGameFailure)
     if (!gameOver) {
-    move === 'X' ? move = 'O' : move = 'X'
-    $(block).css("cursor", "not-allowed")
+      move === 'X' ? move = 'O' : move = 'X'
+      $(block).css('cursor', 'not-allowed')
     }
   }
 
@@ -65,22 +64,23 @@ const checkWinner = (index, userMove) => {
   for (let i = 0; i < drawCheck.length; i++) {
     draw.push(drawCheck[i].innerHTML)
   }
-  if (!draw.some(piece => piece == ""))
+  if (!draw.some(piece => piece == '')) {
     return true
+  }
 }
 
 const showGame = event => {
   event.preventDefault()
   const gameId = event.target
   const gameIdForm = getFormFields(gameId)
-  if (gameIdForm.gameStatus == "all") {
+  if (gameIdForm.gameStatus == 'all') {
     gameApi.indexGame(gameIdForm.id)
       .then(gameUi.indexGameSuccess)
       .catch(gameUi.indexGameFailure)
   } else {
-  gameApi.gameLog(gameIdForm)
-    .then(gameUi.gameLogSuccess)
-    .catch(gameUi.gameLogFailure)
+    meApi.gameLog(gameIdForm)
+      .then(gameUi.gameLogSuccess)
+      .catch(gameUi.gameLogFailure)
   }
   $('form').trigger('reset')
 }
