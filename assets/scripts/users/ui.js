@@ -20,6 +20,7 @@ const signInSuccess = data => {
   $('#user-message').addClass('success')
   $('#user-message').text('Sign In Success!')
   $('.unauthenticated').show()
+  $('#login-tab').hide()
 }
 
 const signInFailure = error => {
@@ -36,6 +37,7 @@ const signOutSuccess = () => {
   storage.store = null
   storage.game = null
   storage.log = null
+  window.location.reload()
 }
 
 const signOutFailure = () => {

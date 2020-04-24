@@ -5,18 +5,16 @@ const createGameSuccess = gameData => {
   storage.game = gameData
   $('#gameboard').empty()
   $('#gameboard').append(`
-  <div data-cell-index='0' class="col-3 board-box"></div>
-  <div data-cell-index='1' class="col-3 board-box"></div>
-  <div data-cell-index='2' class="col-3 board-box"></div>
-  <div class="w-100"></div>
-  <div data-cell-index='3' class="col-3 board-box"></div>
-  <div data-cell-index='4' class="col-3 board-box"></div>
-  <div data-cell-index='5' class="col-3 board-box"></div>
-  <div class="w-100"></div>
-  <div data-cell-index='6' class="col-3 board-box"></div>
-  <div data-cell-index='7' class="col-3 board-box"></div>
-  <div data-cell-index='8' class="col-3 board-box"></div>
-  <div class="w-100"></div>`)
+  <div data-cell-index='0' class="col-4 board-box"></div>
+  <div data-cell-index='1' class="col-4 board-box"></div>
+  <div data-cell-index='2' class="col-4 board-box"></div>
+  <div data-cell-index='3' class="col-4 board-box"></div>
+  <div data-cell-index='4' class="col-4 board-box"></div>
+  <div data-cell-index='5' class="col-4 board-box"></div>
+  <div data-cell-index='6' class="col-4 board-box"></div>
+  <div data-cell-index='7' class="col-4 board-box"></div>
+  <div data-cell-index='8' class="col-4 board-box"></div>
+  `)
   $('.board-box').css("cursor","pointer")
   $('#user-message').text('Create Game Success!')
   $('#user-message').removeClass()

@@ -1,4 +1,10 @@
-
+$primary: #0F4C81;
+$lightprimary: #658DC6;
+$lighterprimary: #B5C7D3;
+$secondary: #F3D5AD;
+$offprimary: #84898C;
+$offsecondary: #F5B895;
+$middle: #A58D7F;
 
 @import '~bootstrap/scss/bootstrap';
 
@@ -12,22 +18,34 @@
 }
 
 .board-box {
-  border: 4px solid black;
-  background-color: grey;
-  align-items: center;
+  border-right: 4px solid $offsecondary;
+  border-bottom: 4px solid $offsecondary;
+  background-color: white;
   display: flex;
-  height: 120px;
   justify-content: center;
-}
+  align-items: center;
+  height: 120px;
+  font-size: 50px;
 
-.board-box:hover {
-    border: 4px solid white;
+
+  &:nth-child(3n) {
+    border-right: 0;
   }
 
+  &:nth-last-child(-1n + 3) {
+    border-bottom: 0;
+  }
+
+  &:hover {
+    border: 4px solid $middle;
+    background-color: $secondary;
+  }
+}
+
 .gameboard {
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
 }
 
 #create-board {
@@ -36,4 +54,38 @@
 
 .unauthenticated {
   display: none;
+}
+
+#title {
+  background-color: $lighterprimary;
+  height: 100vh;
+}
+
+.nav-link, #login-tab {
+  background-color: $lightprimary;
+  color: white;
+
+  &:hover{
+    background-color: $offprimary;
+    color: white;
+  }
+
+}
+
+#sign-out {
+  background-color: white;
+
+  &:hover {
+    background-color: red;
+    color: white;
+  }
+}
+
+#logo {
+  color: $primary;
+
+  &:hover {
+    color: $secondary;
+    text-decoration: none;
+  }
 }

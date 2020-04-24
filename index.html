@@ -11,16 +11,18 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
-  <body class="container">
+  <body class="container-fluid">
     <div class="row">
       <header id="title" class="col-3">
-        <h1>Tic Tac Toe</h1>
+        <a id='logo' href='#login-tab'>
+          <h1><strong>#Tic-Tac-Toe</strong></h1>
+        </a>
         <nav class="nav flex-column nav-pills" id="sideBar" role="tablist" aria-orientation="vertical">
           <a class="nav-link active" id="login-tab" data-toggle="pill" href="#user-login" role="tab" aria-controls="user-login" aria-selected="true"> Login </a>
           <a class="nav-link unauthenticated" id="play-tab" data-toggle="pill" href="#game-play" role="tab" aria-controls="game-play" aria-selected="false"> Play </a>
           <a class="nav-link unauthenticated" id="log-tab" data-toggle="pill" href="#game-log" role="tab" aria-controls="game-log" aria-selected="false"> Game Log </a>
           <a class="nav-link unauthenticated" id="settings-tab" data-toggle="pill" href="#user-settings" role="tab" aria-controls="user-settings" aria-selected="false"> User Settings </a>
-          <button class="btn btn-danger unauthenticated" id="sign-out"> Sign Out </button>
+          <button class="btn btn-outline-danger unauthenticated" id="sign-out"> Sign Out </button>
         </nav>
       </header>
       <main class="col-9">
