@@ -59,6 +59,25 @@
           <div class="row justify-content-center">
             <button id="create-board" class="btn-default"> New Board </button>
           </div>
+          <br>
+          <div>
+            <form id="game-log">
+              <input name="id" type="number" placeholder="game ID (empty to search all)">
+              <button type="submit"> search games </button>
+              <div class='form-check form-check-inline'>
+                <input type='radio' class='form-check-input' name="gameStatus" id="allStatus" value="all" checked>
+                <label class='form-check-label' for='allStatus'> All </label>
+              </div>
+              <div class='form-check form-check-inline'>
+                <input type='radio' class='form-check-input' name="gameStatus" id="finishedGames" value='true'>
+                <label class='form-check-label' for='finishedGames'> Finished </label>
+              </div>
+              <div class='form-check form-check-inline'>
+                <input type='radio' class='form-check-input' name="gameStatus" id="unfinishedGames" value='false'>
+                <label class='form-check-label' for='unfinishedGames'> Unfinished </label>
+              </div>
+            </form>
+          </div>
         </div>
       </main>
     </body>

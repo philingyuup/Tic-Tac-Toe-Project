@@ -1,5 +1,6 @@
 'use strict'
 
+const getFormFields = require('../../../lib/get-form-fields.js')
 const storage = require('../store.js')
 const gameApi = require('./api.js')
 const gameUi = require('./ui.js')
@@ -68,7 +69,26 @@ const checkWinner = (index, userMove) => {
     return true
 }
 
+const showGame = event => {
+  event.preventDefault()
+  const gameId = event.target
+  const gameIdForm = getFormFields(gameId)
+  if (gameIdForm.gameStatus == "all") {
+    gameApi.indexGame(gameIdForm.id)
+      .then(gameUi.indexGameSuccess)
+      .catch(gameUi.indexGameFailure)
+  } else {
+  gameApi.gameLog(gameIdForm)
+    .then(gameUi.gameLogSuccess)
+    .catch(gameUi.gameLogFailure)
+  }
+  $('form').trigger('reset')
+}
+
+
+
 module.exports = {
   playMove: playMove,
-  createBoard: createBoard
+  createBoard: createBoard,
+  showGame: showGame
 }

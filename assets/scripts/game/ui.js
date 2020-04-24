@@ -31,7 +31,6 @@ const createGameFailure = error => {
 
 const updateGameSuccess = gameData => {
   storage.game = gameData
-  console.log(storage.game)
   $('#user-message').text('Update Game Success!')
   $('#user-message').removeClass()
   $('#user-message').addClass('success')
@@ -43,9 +42,42 @@ const updateGameFailure = error => {
   $('#user-message').addClass('failure')
 }
 
+const indexGameSuccess = data => {
+  storage.gameLog = data
+  $('#user-message').text('Index Game Success!')
+  $('#user-message').removeClass()
+  $('#user-message').addClass('success')
+}
+
+const indexGameFailure = error => {
+  console.log(error)
+  $('#user-message').text('Index Game Failed!')
+  $('#user-message').removeClass()
+  $('#user-message').addClass('failure')
+}
+
+const gameLogSuccess = data => {
+  storage.gameLog = data
+  $('#user-message').text('Game Log Success!')
+  $('#user-message').removeClass()
+  $('#user-message').addClass('success')
+}
+
+const gameLogFailure = error => {
+  console.log(error)
+  $('#user-message').text('Game Log Failed!')
+  $('#user-message').removeClass()
+  $('#user-message').addClass('failure')
+}
+
+
 module.exports = {
   createGameSuccess: createGameSuccess,
   createGameFailure: createGameFailure,
   updateGameSuccess: updateGameSuccess,
-  updateGameFailure: updateGameFailure
+  updateGameFailure: updateGameFailure,
+  indexGameSuccess: indexGameSuccess,
+  indexGameFailure: indexGameFailure,
+  gameLogSuccess: gameLogSuccess,
+  gameLogFailure: gameLogFailure
 }

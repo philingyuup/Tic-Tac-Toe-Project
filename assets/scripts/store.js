@@ -6,8 +6,12 @@ const userStore = {
 const gameStore ={
 }
 
+const gameLog = {
+
+}
 
 module.exports = {
   store: userStore,
-  game: gameStore
+  game: gameStore,
+  log: gameLog
 }

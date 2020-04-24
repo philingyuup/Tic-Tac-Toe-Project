@@ -1,4 +1,5 @@
 'use strict'
+
 const storage = require('../store.js')
 const url = require('../config.js')
 
@@ -32,18 +33,33 @@ const updateGame = (index, move, overStatus) => {
   })
 }
 
+const indexGame = id => {
+  return $.ajax({
+    url: url.apiUrl + '/games/' + id,
+    method: 'GET',
+    headers: {
+      Authorization: "Token token=" + storage.store.user.token
+    }
+  })
+}
+
+const gameLog = data => {
+  console.log(data.gameStatus)
+  return $.ajax({
+    url: url.apiUrl + '/games/' + data.id + '?over=' + data.gameStatus,
+    method: 'GET',
+    headers: {
+      Authorization: "Token token=" + storage.store.user.token
+    }
+  })
+}
+
 module.exports = {
   createGame: createGame,
-  updateGame: updateGame
+  updateGame: updateGame,
+  gameLog: gameLog,
+  indexGame: indexGame
 }
 
 
-// {
-//   "game": {
-//     "cell": {
-//       "index": 0,
-//       "value": "x"
-//     },
-//     "over": false
-//   }
-// }
+// {id: "12312312", gameStatus: trueee}
