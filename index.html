@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
       <title>Example</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,69 +11,70 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
-    <body class="container">
-      <div class="row">
-        <header id="title" class="col-3">
-          <h1>Tic Tac Toe</h1>
-          <nav class="nav flex-column nav-pills" id="sideBar" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active" id="login-tab" data-toggle="pill" href="#user-login" role="tab" aria-controls="user-login" aria-selected="true"> Login </a>
-            <a class="nav-link" id="play-tab" data-toggle="pill" href="#game-play" role="tab" aria-controls="game-play" aria-selected="false"> Play </a>
-            <a class="nav-link" id="log-tab" data-toggle="pill" href="#game-log" role="tab" aria-controls="game-log" aria-selected="false"> Game Log </a>
-            <a class="nav-link" id="settings-tab" data-toggle="pill" href="#user-settings" role="tab" aria-controls="user-settings" aria-selected="false"> User Settings </a>
-          </nav>
-        </header>
-        <main class="col-9">
-          <div class="tab-content" id="tabContent">
-              <div id="user-message"> </div>
-              <div id="user-login" class="tab-pane fade show active" role="tabpanel" aria-lablledby="login-tab">
-                <form id="sign-in">
-                  <input required name="credentials[email]" type="text" placeholder="you@example.com">
-                  <input required name="credentials[password]" type="password" placeholder="password">
-                  <button type="submit"> sign-in </button>
-                </form>
-                <form id="sign-up">
-                  <input required name="credentials[email]" type="text" placeholder="you@example.com">
-                  <input required name="credentials[password]" type="password" placeholder="password">
-                  <input required name="credentials[password_confirmation]" type="password" placeholder="confirm password">
-                  <button type="submit"> sign-up </button>
-                </form>
-              </div>
-              <br>
-              <div id="user-settings" class="tab-pane fade" role="tabpanel" aria-labelledby="settings-tab"
-                <form id="changepw">
-                  <input required name="passwords[old]" type="password" placeholder="old password">
-                  <input required name="passwords[new]" type="password" placeholder="new password">
-                  <button type="submit"> change password </button>
-                </form>
-              </div>
-              <br>
-              <div id="game-play" class="tab-pane fade" role="tabpanel" aria-labelledby="play-tab">
-                <div id="gameboard" class="row justify-content-center">
-                </div>
-                <div class="row justify-content-center">
-                <button id="create-board" class="btn-default"> New Board </button>
-                </div>
-              </div>
-              <br>
-              <form id="game-log" class="tab-pane fade" role="tabpanel" aria-labelledby="log-tab">
-                <input name="id" type="number" placeholder="game ID (empty to search all)">
-                <button type="submit"> search games </button>
-                <br>
-                <div class='form-check form-check-inline'>
-                  <input type='radio' class='form-check-input' name="gameStatus" id="allStatus" value="all" checked>
-                  <label class='form-check-label' for='allStatus'> All </label>
-                </div>
-                <div class='form-check form-check-inline'>
-                  <input type='radio' class='form-check-input' name="gameStatus" id="finishedGames" value='true'>
-                  <label class='form-check-label' for='finishedGames'> Finished </label>
-                </div>
-                <div class='form-check form-check-inline'>
-                  <input type='radio' class='form-check-input' name="gameStatus" id="unfinishedGames" value='false'>
-                  <label class='form-check-label' for='unfinishedGames'> Unfinished </label>
-                </div>
-              </form>
+  <body class="container">
+    <div class="row">
+      <header id="title" class="col-3">
+        <h1>Tic Tac Toe</h1>
+        <nav class="nav flex-column nav-pills" id="sideBar" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="login-tab" data-toggle="pill" href="#user-login" role="tab" aria-controls="user-login" aria-selected="true"> Login </a>
+          <a class="nav-link unauthenticated" id="play-tab" data-toggle="pill" href="#game-play" role="tab" aria-controls="game-play" aria-selected="false"> Play </a>
+          <a class="nav-link unauthenticated" id="log-tab" data-toggle="pill" href="#game-log" role="tab" aria-controls="game-log" aria-selected="false"> Game Log </a>
+          <a class="nav-link unauthenticated" id="settings-tab" data-toggle="pill" href="#user-settings" role="tab" aria-controls="user-settings" aria-selected="false"> User Settings </a>
+          <button class="btn btn-danger unauthenticated" id="sign-out"> Sign Out </button>
+        </nav>
+      </header>
+      <main class="col-9">
+        <div class="tab-content" id="tabContent">
+          <div id="user-message"> </div>
+          <div id="user-login" class="tab-pane fade show active" role="tabpanel" aria-lablledby="login-tab">
+            <form id="sign-in">
+              <input required name="credentials[email]" type="text" placeholder="you@example.com">
+              <input required name="credentials[password]" type="password" placeholder="password">
+              <button type="submit"> sign-in </button>
+            </form>
+            <form id="sign-up">
+              <input required name="credentials[email]" type="text" placeholder="you@example.com">
+              <input required name="credentials[password]" type="password" placeholder="password">
+              <input required name="credentials[password_confirmation]" type="password" placeholder="confirm password">
+              <button type="submit"> sign-up </button>
+            </form>
           </div>
-        </main>
-      </div>
-    </body>
+          <br>
+          <div id="user-settings" class="tab-pane fade" role="tabpanel" aria-labelledby="settings-tab"
+            <form id="changepw">
+              <input required name="passwords[old]" type="password" placeholder="old password">
+              <input required name="passwords[new]" type="password" placeholder="new password">
+              <button type="submit"> change password </button>
+            </form>
+          </div>
+          <br>
+          <div id="game-play" class="tab-pane fade" role="tabpanel" aria-labelledby="play-tab">
+            <div id="gameboard" class="row justify-content-center">
+            </div>
+            <div class="row justify-content-center">
+            <button id="create-board" class="btn-default"> New Board </button>
+            </div>
+          </div>
+          <br>
+          <form id="game-log" class="tab-pane fade" role="tabpanel" aria-labelledby="log-tab">
+            <input name="id" type="number" placeholder="game ID (empty to search all)">
+            <button type="submit"> search games </button>
+            <br>
+            <div class='form-check form-check-inline'>
+              <input type='radio' class='form-check-input' name="gameStatus" id="allStatus" value="all" checked>
+              <label class='form-check-label' for='allStatus'> All </label>
+            </div>
+            <div class='form-check form-check-inline'>
+              <input type='radio' class='form-check-input' name="gameStatus" id="finishedGames" value='true'>
+              <label class='form-check-label' for='finishedGames'> Finished </label>
+            </div>
+            <div class='form-check form-check-inline'>
+              <input type='radio' class='form-check-input' name="gameStatus" id="unfinishedGames" value='false'>
+              <label class='form-check-label' for='unfinishedGames'> Unfinished </label>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>

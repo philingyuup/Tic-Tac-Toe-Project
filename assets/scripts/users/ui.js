@@ -19,6 +19,7 @@ const signInSuccess = data => {
   $('#user-message').removeClass()
   $('#user-message').addClass('success')
   $('#user-message').text('Sign In Success!')
+  $('.unauthenticated').show()
 }
 
 const signInFailure = error => {
@@ -31,7 +32,10 @@ const signOutSuccess = () => {
   $('#user-message').removeClass()
   $('#user-message').addClass('success')
   $('#user-message').text('Sign Out success!')
+  $('.unauthenticated').css("display","none")
   storage.store = null
+  storage.game = null
+  storage.log = null
 }
 
 const signOutFailure = () => {

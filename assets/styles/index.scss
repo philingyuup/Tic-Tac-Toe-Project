@@ -1,3 +1,5 @@
+
+
 @import '~bootstrap/scss/bootstrap';
 
 
@@ -30,4 +32,8 @@
 
 #create-board {
   margin-top: 10px;
+}
+
+.unauthenticated {
+  display: none;
 }
