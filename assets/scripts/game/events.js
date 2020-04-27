@@ -3,6 +3,7 @@
 const getFormFields = require('../../../lib/get-form-fields.js')
 const gameApi = require('./api.js')
 const gameUi = require('./ui.js')
+const storage = require('../store.js')
 
 let move = 'X'
 let gameOver = false
@@ -11,7 +12,7 @@ const checkMove = num => {
   return $(`.board-box[data-cell-index="${num}"]`).html()
 }
 
-let winningPermutations = [
+const winningPermutations = [
   [0,1,2],
   [3,4,5],
   [6,7,8],
@@ -37,6 +38,11 @@ const playMove = event => {
     $(block).text(move)
     if (checkWinner(index, move)) {
       $('.board-box').css('cursor', 'not-allowed')
+      if (checkWinner(index, move) == 9) {
+        $('#user-message').text(`Game Over. Draw!`)
+      } else {
+      $('#user-message').text(`Player ${move} won!`)
+      }
       gameOver = true
     }
     gameApi.updateGame(index, move, gameOver)
@@ -65,7 +71,7 @@ const checkWinner = (index, userMove) => {
     draw.push(drawCheck[i].innerHTML)
   }
   if (!draw.some(piece => piece == '')) {
-    return true
+    return 9
   }
 }
 
@@ -78,17 +84,16 @@ const showGame = event => {
       .then(gameUi.indexGameSuccess)
       .catch(gameUi.indexGameFailure)
   } else {
-    meApi.gameLog(gameIdForm)
+    gameApi.gameLog(gameIdForm)
       .then(gameUi.gameLogSuccess)
       .catch(gameUi.gameLogFailure)
   }
   $('form').trigger('reset')
 }
 
-
-
 module.exports = {
   playMove: playMove,
   createBoard: createBoard,
-  showGame: showGame
+  showGame: showGame,
+  winningPermutations: winningPermutations
 }

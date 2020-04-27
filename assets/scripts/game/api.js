@@ -44,7 +44,6 @@ const indexGame = id => {
 }
 
 const gameLog = data => {
-  console.log(data.gameStatus)
   return $.ajax({
     url: url.apiUrl + '/games/' + data.id + '?over=' + data.gameStatus,
     method: 'GET',

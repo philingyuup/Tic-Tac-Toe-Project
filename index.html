@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <title>Example</title>
+      <title>Tic Tac Toe</title>
+      <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga&display=swap" rel="stylesheet">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
@@ -20,7 +19,7 @@
         <nav class="nav flex-column nav-pills" id="sideBar" role="tablist" aria-orientation="vertical">
           <a class="nav-link active" id="login-tab" data-toggle="pill" href="#user-login" role="tab" aria-controls="user-login" aria-selected="true"> Login </a>
           <a class="nav-link unauthenticated" id="play-tab" data-toggle="pill" href="#game-play" role="tab" aria-controls="game-play" aria-selected="false"> Play </a>
-          <a class="nav-link unauthenticated" id="log-tab" data-toggle="pill" href="#game-log" role="tab" aria-controls="game-log" aria-selected="false"> Game Log </a>
+          <a class="nav-link unauthenticated" id="log-tab" data-toggle="pill" href="#gamelog" role="tab" aria-controls="gamelog" aria-selected="false"> Game Log </a>
           <a class="nav-link unauthenticated" id="settings-tab" data-toggle="pill" href="#user-settings" role="tab" aria-controls="user-settings" aria-selected="false"> User Settings </a>
           <button class="btn btn-outline-danger unauthenticated" id="sign-out"> Sign Out </button>
         </nav>
@@ -73,35 +72,38 @@
             <form id="changepw">
               <input required name="passwords[old]" type="password" placeholder="old password">
               <input required name="passwords[new]" type="password" placeholder="new password">
-              <button type="submit"> change password </button>
+              <button type="submit" class="btn"> change password </button>
             </form>
           </div>
           <br>
           <div id="game-play" class="tab-pane fade" role="tabpanel" aria-labelledby="play-tab">
-            <div id="gameboard" class="row justify-content-center">
+            <div id="gameboard" class="row">
             </div>
             <div class="row justify-content-center">
-            <button id="create-board" class="btn-default"> New Board </button>
+            <button id="create-board" class="btn"> New Board </button>
             </div>
           </div>
           <br>
-          <form id="game-log" class="tab-pane fade" role="tabpanel" aria-labelledby="log-tab">
-            <input name="id" type="number" placeholder="game ID (empty to search all)">
-            <button type="submit"> search games </button>
-            <br>
-            <div class='form-check form-check-inline'>
-              <input type='radio' class='form-check-input' name="gameStatus" id="allStatus" value="all" checked>
-              <label class='form-check-label' for='allStatus'> All </label>
-            </div>
-            <div class='form-check form-check-inline'>
-              <input type='radio' class='form-check-input' name="gameStatus" id="finishedGames" value='true'>
-              <label class='form-check-label' for='finishedGames'> Finished </label>
-            </div>
-            <div class='form-check form-check-inline'>
-              <input type='radio' class='form-check-input' name="gameStatus" id="unfinishedGames" value='false'>
-              <label class='form-check-label' for='unfinishedGames'> Unfinished </label>
-            </div>
-          </form>
+          <div id='gamelog' class="tab-pane fade" role="tabpanel" aria-labelledby="log-tab">
+            <form id="game-log">
+              <input name="id" type="number" placeholder="game ID (empty to search all)">
+              <button class="btn" type="submit"> Search Games </button>
+              <br>
+              <div class='form-check form-check-inline'>
+                <input type='radio' class='form-check-input' name="gameStatus" id="allStatus" value="all" checked>
+                <label class='form-check-label' for='allStatus'> All </label>
+              </div>
+              <div class='form-check form-check-inline'>
+                <input type='radio' class='form-check-input' name="gameStatus" id="finishedGames" value='true'>
+                <label class='form-check-label' for='finishedGames'> Finished </label>
+              </div>
+              <div class='form-check form-check-inline'>
+                <input type='radio' class='form-check-input' name="gameStatus" id="unfinishedGames" value='false'>
+                <label class='form-check-label' for='unfinishedGames'> Unfinished </label>
+              </div>
+            </form>
+            <div id='gameLogStats'></div>
+          </div>
         </div>
       </main>
     </div>

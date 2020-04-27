@@ -8,6 +8,9 @@ $middle: #A58D7F;
 
 @import '~bootstrap/scss/bootstrap';
 
+// body {
+//   font-family: 'Lexend Giga', sans-serif;
+// }
 
 .success {
   color: green;
@@ -97,7 +100,7 @@ $middle: #A58D7F;
   padding: 20px 20px;
 }
 
-input{
+input[type=text], input[type=password], input[type=number]{
   width: 50%;
   border: 1px solid $lighterprimary;
   border-radius: 4px;

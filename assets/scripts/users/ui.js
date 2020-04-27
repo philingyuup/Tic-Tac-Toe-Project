@@ -21,6 +21,8 @@ const signInSuccess = data => {
   $('#user-message').text('Sign In Success!')
   $('.unauthenticated').show()
   $('#login-tab').hide()
+  $('#user-login').attr('class','tab-pane fade')
+  $('#game-play').addClass('active show')
 }
 
 const signInFailure = error => {
