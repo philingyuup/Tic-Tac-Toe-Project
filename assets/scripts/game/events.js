@@ -95,5 +95,4 @@ module.exports = {
   playMove: playMove,
   createBoard: createBoard,
   showGame: showGame,
-  winningPermutations: winningPermutations
 }
