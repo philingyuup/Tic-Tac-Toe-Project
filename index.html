@@ -30,16 +30,43 @@
           <div id="user-message"> </div>
           <div id="user-login" class="tab-pane fade show active" role="tabpanel" aria-lablledby="login-tab">
             <form id="sign-in">
-              <input required name="credentials[email]" type="text" placeholder="you@example.com">
-              <input required name="credentials[password]" type="password" placeholder="password">
-              <button type="submit"> sign-in </button>
+              <div class="form-group">
+                <label for="signInEmail">Email Address:</label>
+                <input required id="signInEmail" name="credentials[email]" type="text" placeholder="you@example.com"  >
+              </div>
+              <div class="form-group">
+                <label for="signInPw">Password:</label>
+                <input required id="signInPw" name="credentials[password]" type="password" placeholder="password">
+              </div>
+              <button class="btn" type="submit"> Login </button>
+              <button type="button" class="btn" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
+              <small class="form-text text-muted">No Account? Signup for free!</small>
             </form>
-            <form id="sign-up">
-              <input required name="credentials[email]" type="text" placeholder="you@example.com">
-              <input required name="credentials[password]" type="password" placeholder="password">
-              <input required name="credentials[password_confirmation]" type="password" placeholder="confirm password">
-              <button type="submit"> sign-up </button>
-            </form>
+            <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Sign Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="sign-up">
+                      <input required aria-describedby="emailHelp" name="credentials[email]" type="text" placeholder="you@example.com">
+                      <small id="emailHelp" class="form-text text-muted">Please don't use a real email!</small>
+                      <input required aria-describedby="passwordHelp" name="credentials[password]" type="password" placeholder="password">
+                      <small id="passwordHelp" class="form-text text-muted">Please don't use a real password!</small>
+                      <input required name="credentials[password_confirmation]" type="password" placeholder="confirm password">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn">Sign Up</button>
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
           <br>
           <div id="user-settings" class="tab-pane fade" role="tabpanel" aria-labelledby="settings-tab"

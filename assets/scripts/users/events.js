@@ -11,6 +11,7 @@ const signUp = event => {
     .then(userUi.signUpSuccess)
     .catch(userUi.signUpFailure)
   $('form').trigger('reset')
+  $('#signUpModal').modal('hide')
 }
 
 const signIn = event => {
