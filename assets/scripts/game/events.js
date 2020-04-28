@@ -25,21 +25,16 @@ const playMove = event => {
     $(block).text(move)
     $(block).css('cursor', 'not-allowed')
     const storeGame = storage.game.game
-    console.log(storage.game.game)
     storeGame.cells[index] = move
-    console.log(checkWin(storeGame))
     if (checkWin(storeGame) === 'X') {
-      console.log(checkWin(storeGame))
       storeGame.over = true
       $('.board-box').css('cursor', 'not-allowed')
       $('#user-message').text(`Player ${move} won!`)
-    }
-    if (checkWin(storeGame) === 'O'){
+    } else if (checkWin(storeGame) === 'O') {
       storeGame.over = true
       $('.board-box').css('cursor', 'not-allowed')
       $('#user-message').text(`Player ${move} won!`)
-    }
-    if (checkWin(storeGame) === 'Draw') {
+    } else if (checkWin(storeGame) === 'Draw') {
       storeGame.over = true
       $('#user-message').text(`Game Over. Draw!`)
     }

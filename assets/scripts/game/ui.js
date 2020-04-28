@@ -65,15 +65,11 @@ const checkWinner = data => {
     temp.push(cell[winCheck[i][0]])
     temp.push(cell[winCheck[i][1]])
     temp.push(cell[winCheck[i][2]])
-    console.log(winCheck[i])
-    console.log(temp)
     if (temp.every(piece => piece === 'X')) {
       return 'X'
-    }
-    if (temp.every(piece => piece === 'O')) {
+    } else if (temp.every(piece => piece === 'O')) {
       return 'O'
-    }
-    if (cell.every(piece => piece !== '')) {
+    } else if (cell.every(piece => piece !== '') && i === 7) {
       return 'Draw'
     }
   } return 'None'
