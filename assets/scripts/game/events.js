@@ -29,11 +29,11 @@ const playMove = event => {
     if (checkWin(storeGame) === 'X') {
       storeGame.over = true
       $('.board-box').css('cursor', 'not-allowed')
-      $('#user-message').text(`Player ${move} won!`)
+      $('#user-message').text(`Player X won!`)
     } else if (checkWin(storeGame) === 'O') {
       storeGame.over = true
       $('.board-box').css('cursor', 'not-allowed')
-      $('#user-message').text(`Player ${move} won!`)
+      $('#user-message').text(`Player O won!`)
     } else if (checkWin(storeGame) === 'Draw') {
       storeGame.over = true
       $('#user-message').text(`Game Over. Draw!`)
@@ -41,8 +41,8 @@ const playMove = event => {
     gameApi.updateGame(index, move, storeGame.over)
       .then(gameUi.updateGameSuccess)
       .catch(gameUi.updateGameFailure)
+    move === 'X' ? move = 'O' : move = 'X'
   }
-  move === 'X' ? move = 'O' : move = 'X'
 }
 
 const showGame = event => {
