@@ -78,6 +78,15 @@
           <br>
           <div id="game-play" class="tab-pane fade" role="tabpanel" aria-labelledby="play-tab">
             <div id="gameboard" class="row">
+              <div data-cell-index='0' class="col-4 board-box"></div>
+              <div data-cell-index='1' class="col-4 board-box"></div>
+              <div data-cell-index='2' class="col-4 board-box"></div>
+              <div data-cell-index='3' class="col-4 board-box"></div>
+              <div data-cell-index='4' class="col-4 board-box"></div>
+              <div data-cell-index='5' class="col-4 board-box"></div>
+              <div data-cell-index='6' class="col-4 board-box"></div>
+              <div data-cell-index='7' class="col-4 board-box"></div>
+              <div data-cell-index='8' class="col-4 board-box"></div>
             </div>
             <div class="row justify-content-center">
             <button id="create-board" class="btn"> New Board </button>
@@ -102,7 +111,33 @@
                 <label class='form-check-label' for='unfinishedGames'> Unfinished </label>
               </div>
             </form>
-            <div id='gameLogStats'></div>
+            <div id='gameLogStats'>
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope='col'>User ID</th>
+                  <th scope='col'>Games Played</th>
+                  <th scope='col'>Games Finished</th>
+                  <th scope='col'>Games Won</th>
+                </tr>
+                </thead>
+                <tbody id='totalStats'>
+                </tbody>
+              </table>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope='col'>#</th>
+                    <th scope='col'>ID</th>
+                    <th scope='col'>Game Info</th>
+                    <th scope='col'>Finished Game</th>
+                    <th scope='col'>Who Won?</th>
+                  </tr>
+                </thead>
+                <tbody id='tableContent'>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </main>

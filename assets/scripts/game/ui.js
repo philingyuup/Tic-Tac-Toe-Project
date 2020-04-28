@@ -2,43 +2,15 @@
 const storage = require('../store.js')
 
 const winCheck = [
-  [0,1,2],
-  [3,4,5],
-  [6,7,8],
-  [0,3,6],
-  [1,4,7],
-  [2,5,8],
-  [2,4,6],
-  [0,4,8]
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [2, 4, 6],
+  [0, 4, 8]
 ]
-
-const logTable = `
-<table class="table">
-  <thead>
-    <tr>
-      <th scope='col'>User ID</th>
-      <th scope='col'>Games Played</th>
-      <th scope='col'>Games Finished</th>
-      <th scope='col'>Games Won</th>
-    </tr>
-  </thead>
-  <tbody id='totalStats'>
-  </tbody>
-</table>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope='col'>#</th>
-      <th scope='col'>ID</th>
-      <th scope='col'>Game Info</th>
-      <th scope='col'>Finished Game</th>
-      <th scope='col'>Who Won?</th>
-    </tr>
-  </thead>
-  <tbody id='tableContent'>
-  </tbody>
-</table>
-`
 
 const showTotalStats = () => {
   const id = storage.store.user.id
@@ -48,10 +20,10 @@ const showTotalStats = () => {
   if (storage.log.games === undefined || null) {
     gamesPlayed = 1
     if (storage.log.game.over === true) {
-    gamesFinished = 1
+      gamesFinished = 1
     }
     if (storage.log.game.winner === 'X') {
-    gamesWon = 1
+      gamesWon = 1
     }
   } else {
     gamesPlayed = storage.log.games.length
@@ -64,7 +36,7 @@ const showTotalStats = () => {
       }
     }
   }
-  let stats = `
+  const stats = `
     <tr>
       <th scope='row'>${id}</th>
         <td>${gamesPlayed}</td>
@@ -76,35 +48,35 @@ const showTotalStats = () => {
 }
 
 const logWinner = () => {
-  if (storage.log.games === undefined || null) {
+  const storeLog = storage.log.games
+  if (storeLog === undefined || null) {
     storage.log.game.winner = checkWinner(storage.log.game)
   } else {
-    for (let i = 0; i < storage.log.games.length; i++) {
-      storage.log.games[i].winner = checkWinner(storage.log.games[i])
+    for (let i = 0; i < storeLog.length; i++) {
+      storeLog[i].winner = checkWinner(storeLog[i])
     }
   }
 }
 
 const checkWinner = data => {
   const cell = data.cells
-  if (data.over === true) {
-    for (let i = 0; i < winCheck.length; i++) {
-      let temp = []
-      temp.push(cell[winCheck[i][0]])
-      temp.push(cell[winCheck[i][1]])
-      temp.push(cell[winCheck[i][2]])
-      if (temp.every(piece => piece === 'X')) {
-        return 'X'
-      }
-      if (temp.every(piece => piece === 'O')) {
-      return 'O'
-      }
+  for (let i = 0; i < winCheck.length; i++) {
+    const temp = []
+    temp.push(cell[winCheck[i][0]])
+    temp.push(cell[winCheck[i][1]])
+    temp.push(cell[winCheck[i][2]])
+    console.log(winCheck[i])
+    console.log(temp)
+    if (temp.every(piece => piece === 'X')) {
+      return 'X'
     }
-  } if (data.over === true && !cell.some(piece => piece == '')) {
-    return 'Draw'
-  } else {
-    return 'None'
-  }
+    if (temp.every(piece => piece === 'O')) {
+      return 'O'
+    }
+    if (cell.every(piece => piece !== '')) {
+      return 'Draw'
+    }
+  } return 'None'
 }
 
 const displayStats = () => {
@@ -118,7 +90,8 @@ const displayStats = () => {
         <td>${storage.log.game.over}</td>
         <td>${storage.log.game.winner}</td>
     </tr>
-  `} else {
+  `
+  } else {
     for (let i = 0; i < storage.log.games.length; i++) {
       stats += `
       <tr>
@@ -135,25 +108,15 @@ const displayStats = () => {
 
 const createGameSuccess = gameData => {
   storage.game = gameData
-  $('#gameboard').empty()
-  $('#gameboard').append(`
-  <div data-cell-index='0' class="col-4 board-box"></div>
-  <div data-cell-index='1' class="col-4 board-box"></div>
-  <div data-cell-index='2' class="col-4 board-box"></div>
-  <div data-cell-index='3' class="col-4 board-box"></div>
-  <div data-cell-index='4' class="col-4 board-box"></div>
-  <div data-cell-index='5' class="col-4 board-box"></div>
-  <div data-cell-index='6' class="col-4 board-box"></div>
-  <div data-cell-index='7' class="col-4 board-box"></div>
-  <div data-cell-index='8' class="col-4 board-box"></div>
-  `)
-  $('.board-box').css("cursor","pointer")
+  $('.board-box').empty()
+  $('#gameboard').css('display', 'flex')
+  $('.board-box').css('cursor', 'pointer')
   $('#user-message').text('Create Game Success!')
   $('#user-message').removeClass()
   $('#user-message').addClass('success')
 }
 
-const createGameFailure = error => {
+const createGameFailure = () => {
   $('#user-message').text('Create Game Failed! Please Log-In!')
   $('#user-message').removeClass()
   $('#user-message').addClass('failure')
@@ -168,7 +131,7 @@ const updateGameSuccess = gameData => {
   }
 }
 
-const updateGameFailure = error => {
+const updateGameFailure = () => {
   $('#user-message').text('Update Game Failed')
   $('#user-message').removeClass()
   $('#user-message').addClass('failure')
@@ -180,14 +143,14 @@ const indexGameSuccess = data => {
   $('#user-message').text('Index Game Success!')
   $('#user-message').removeClass()
   $('#user-message').addClass('success')
-  $('#gameLogStats').empty()
-  $('#gameLogStats').append(logTable)
+  $('#tableContent').empty()
+  $('#totalStats').empty()
+  $('#gameLogStats').show()
   $('#tableContent').append(displayStats())
   $('#totalStats').append(showTotalStats())
 }
 
-const indexGameFailure = error => {
-  console.log(error)
+const indexGameFailure = () => {
   $('#user-message').text('Index Game Failed!')
   $('#user-message').removeClass()
   $('#user-message').addClass('failure')
@@ -199,26 +162,28 @@ const gameLogSuccess = data => {
   $('#user-message').text('Game Log Success!')
   $('#user-message').removeClass()
   $('#user-message').addClass('success')
-  $('#gameLogStats').empty()
-  $('#gameLogStats').append(logTable)
+  $('#tableContent').empty()
+  $('#totalStats').empty()
+  $('#gameLogStats').show()
   $('#tableContent').append(displayStats())
   $('#totalStats').append(showTotalStats())
 }
 
-const gameLogFailure = error => {
-  console.log(error)
+const gameLogFailure = () => {
   $('#user-message').text('Game Log Failed!')
   $('#user-message').removeClass()
   $('#user-message').addClass('failure')
 }
 
 module.exports = {
-  createGameSuccess: createGameSuccess,
-  createGameFailure: createGameFailure,
-  updateGameSuccess: updateGameSuccess,
-  updateGameFailure: updateGameFailure,
-  indexGameSuccess: indexGameSuccess,
-  indexGameFailure: indexGameFailure,
-  gameLogSuccess: gameLogSuccess,
-  gameLogFailure: gameLogFailure
+  createGameSuccess,
+  createGameFailure,
+  updateGameSuccess,
+  updateGameFailure,
+  indexGameSuccess,
+  indexGameFailure,
+  gameLogSuccess,
+  gameLogFailure,
+  winCheck,
+  checkWinner
 }

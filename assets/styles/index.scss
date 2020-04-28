@@ -20,16 +20,26 @@ body {
   color: red;
 }
 
+.container {
+  height: 100vh;
+}
+
+#gameboard {
+  display: none;
+  margin: auto;
+  max-height: calc(100vh - 75px);
+  max-width: calc(100vh - 75px);
+}
+
 .board-box {
-  border-right: 4px solid $offsecondary;
-  border-bottom: 4px solid $offsecondary;
+  border-right: 5px ridge $offsecondary;
+  border-bottom: 5px ridge $offsecondary;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 120px;
   font-size: 50px;
-
 
   &:nth-child(3n) {
     border-right: 0;
@@ -40,15 +50,17 @@ body {
   }
 
   &:hover {
-    border: 4px solid $middle;
+    border: 5px groove $middle;
     background-color: $secondary;
+    box-shadow: 4px 4px 8px $offprimary;
+    transform: translate(-3px, -3px);
   }
-}
 
-.gameboard {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  &:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 8px darken($offprimary, 20%);
+    background-color: darken($secondary, 12);
+  }
 }
 
 #create-board {
@@ -67,16 +79,25 @@ body {
 .nav-link, #login-tab {
   background-color: $lightprimary;
   color: white;
+  margin: 5px 0;
+  box-shadow: 3px 3px 3px $offprimary;
 
   &:hover{
     background-color: $offprimary;
     color: white;
+    box-shadow: 3px 3px 3px darken($offprimary, 10%);
   }
 
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 8px darken($offprimary, 20%);
+  }
 }
 
 #sign-out {
   background-color: white;
+  box-shadow: 3px 3px 3px $offprimary;
+  margin-top: 5px;
 
   &:hover {
     background-color: red;
@@ -103,19 +124,35 @@ input[type=text], input[type=password], input[type=number]{
   width: 50%;
   border: 1px solid $lighterprimary;
   border-radius: 4px;
+  box-shadow: 1px 1px 2px $offprimary;
+
+  &:focus {
+    box-shadow: 3px 3px 4px darken($offprimary, 20%);
+  }
 }
 
 .btn {
   background-color: white;
   border: 2px solid $lighterprimary;
+  box-shadow: 1px 1px 2px lighten($offprimary, 20%);
 
   &:hover{
     background-color: $lightprimary;
     color: white;
+    box-shadow: 3px 3px 3px $offprimary;
+  }
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 8px darken($offprimary, 20%);
   }
 }
 
 label {
   font-weight: bold;
   color: $lightprimary;
+}
+
+#gameLogStats {
+  display: none;
 }

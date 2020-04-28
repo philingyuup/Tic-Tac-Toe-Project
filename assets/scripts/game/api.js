@@ -54,10 +54,8 @@ const gameLog = data => {
 }
 
 module.exports = {
-  createGame: createGame,
-  updateGame: updateGame,
-  gameLog: gameLog,
-  indexGame: indexGame
+  createGame,
+  updateGame,
+  gameLog,
+  indexGame
 }
-
-// {id: "12312312", gameStatus: trueee}
