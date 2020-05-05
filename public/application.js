@@ -16875,14 +16875,15 @@ var signInFailure = function signInFailure(error) {
 };
 
 var signOutSuccess = function signOutSuccess() {
-  $('#user-message').removeClass();
-  $('#user-message').addClass('success');
-  $('#user-message').text('Sign Out success!');
-  $('.unauthenticated').css("display", "none");
   storage.store = null;
   storage.game = null;
   storage.log = null;
-  window.location.reload();
+  $('#user-message').removeClass();
+  $('#user-message').addClass('success');
+  $('#user-message').text('Sign Out success!');
+  $('.unauthenticated').css('display', 'none');
+  $('[role=tabpanel]').attr('class', 'tab-pane fade');
+  $('#user-login').addClass('show active');
 };
 
 var signOutFailure = function signOutFailure() {
@@ -16932,6 +16933,7 @@ var gameOver = false;
 
 var checkWin = gameUi.checkWinner;
 
+// restarts the gameboard and the rules
 var createBoard = function createBoard() {
   move = 'X';
   gameOver = false;
@@ -16941,10 +16943,13 @@ var createBoard = function createBoard() {
 var playMove = function playMove(event) {
   var block = event.target;
   var index = +block.dataset.cellIndex;
+  // conditional check if a space has been 'played'
   if ($(block).text() === '' && $(block).css('cursor') !== 'not-allowed') {
     $(block).text(move);
+    // marks the space as 'played'
     $(block).css('cursor', 'not-allowed');
     var storeGame = storage.game.game;
+    // store move played on the board
     storeGame.cells[index] = move;
     if (checkWin(storeGame) === 'X') {
       storeGame.over = true;
@@ -16959,6 +16964,7 @@ var playMove = function playMove(event) {
       $('#user-message').text('Game Over. Draw!');
     }
     gameApi.updateGame(index, move, storeGame.over).then(gameUi.updateGameSuccess).catch(gameUi.updateGameFailure);
+    // switches our players on each board move
     move === 'X' ? move = 'O' : move = 'X';
   }
 };
@@ -17059,13 +17065,16 @@ module.exports = {
 
 var storage = __webpack_require__(53);
 
+// winning combinations for the game
 var winCheck = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [2, 4, 6], [0, 4, 8]];
 
+// creates my HTML for stats display
 var showTotalStats = function showTotalStats() {
   var id = storage.store.user.id;
   var gamesPlayed = 0;
   var gamesFinished = 0;
   var gamesWon = 0;
+  // checks to see if there is only one gamelog returned or multiple
   if (storage.log.games === undefined || null) {
     gamesPlayed = 1;
     if (storage.log.game.over === true) {
@@ -17089,6 +17098,7 @@ var showTotalStats = function showTotalStats() {
   return stats;
 };
 
+// checks your query if you won (user default: player X) and saves those stats
 var logWinner = function logWinner() {
   var storeLog = storage.log.games;
   if (storeLog === undefined || null) {
@@ -17100,6 +17110,8 @@ var logWinner = function logWinner() {
   }
 };
 
+// compares any board with our winCheck array to see if there is a winning combination
+// on the board
 var checkWinner = function checkWinner(data) {
   var cell = data.cells;
   for (var i = 0; i < winCheck.length; i++) {
@@ -17123,6 +17135,7 @@ var checkWinner = function checkWinner(data) {
   }return 'None';
 };
 
+// shows your query results when you try to use the gamelog
 var displayStats = function displayStats() {
   var stats = void 0;
   if (storage.log.games === undefined || null) {
