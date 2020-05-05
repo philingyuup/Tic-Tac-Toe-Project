@@ -1,129 +1,68 @@
-[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
+# Tic-Tac-Toe Project
+Single player Tic-Tac-Toe against yourself! You are your worst enemy!
 
-# browser-template
+## Introduction
+Thank you for visiting my Tic-Tac-Toe project. This project was assigned to us with a project deadline of 5 days. Afterwards we were given additional (personal) time to complete any missing requirements to finally submit our product.
 
-A template for starting front-end projects. Webpack for `require` system, build
-pipeline, and development server. Boostrap and Handlebars.js included. No
-front-end frameworks included.
+## How to get started
+You can play the game [here](https://philingyuup.github.io/Tic-Tac-Toe-Project/ "Tic-Tac-Toe Game"). Game is currently optimized for desktop usage.
+To get started, please **sign-up** with the **sign-up button**. As a safety precaution, please don't use a *real email* or a *real password*. Be _**creative**_, make a new persona for yourself! Afterwards, just hit the **New Board** button and you are on your way!
 
-## Installation
+>>*I didn't make instructions for Tic-Tac-Toe, if you have never played Tic-Tac-Toe before, please refer to this [video](https://www.youtube.com/watch?v=USEjXNCTvcc "Tic-Tac-Toe Rules").*
 
-1. [Download](../../archive/master.zip) this template.
-    - **Do Not Fork And Clone**
-    - Click the "Clone or Download" button and select "Download Zip".
-1. Move to the `wdi/projects` directory, then unzip the template directory with
-    `unzip /Users/<user-name>/Downloads/browser-template-master.zip`.
-1. Rename the template directory from `browser-template-master` to
-    `<project-name>-client`.
-1. Empty [`README.md`](README.md) and fill with your own content.
-1. Replace all instances of `ga-wdi-boston.browser-template` with the name of
-    your project.
-    - You can search for all instances of text in Atom by pressing
-    `commant + shift + f` on Mac or `ctrl + shift + f` on WSL.
-1. Move into the new project and `git init`.
-1. Add all of the files in your project with the command `git add --all`.
-      - **Note: This is the only time you should run this command!**
-1. Commit all of your files with the command `git commit`.
-      - Your commit title should read `Initial commit`.
-1. Install dependencies with `npm install`.
-1. Create a new repository on [github.com](https://github.com),
-    _not GitHub Enterprise_.
-1. Name the new repository with the same name used on Step 3.
-1. Follow the instructions on your new repository's setup page. For details on
-   how to push to Github, refer to the section on Github entitled "…or push an existing
-   repository from the command line." Further documentation can be found [here](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/).
+## Planning
+My planning for this project consisted of separating the workload into their own
+sections.
 
-## Structure
+>
+> - User API Functionality
+> - Game API Functionality
+> - Gameplay Logic
+> - Gamelog Logic
+> - CSS
+>
 
-### Scripts
+### Technology
+Listed below are the technologies used to complete this Project
 
-Developers should store JavaScript files in [`assets/scripts`](assets/scripts).
-The "manifest" or entry-point is
-[`assets/scripts/app.js`](assets/scripts/app.js). In general, only
-application initialization goes in this file. It's normal for developers to
-start putting all code in this file, but encourage them to break out different
-responsibilities and use the `require` syntax put references where they're
-needed.
+- HTML
+- CSS
+- Sass
+- Bootstrap
+- JQuery
+- JavaScript
+- AJAX
 
-### Config
+### User Stories
+The main features we wanted to add to our project can best be described by our
+user stories for this project.
 
-Developers should set `apiUrls.production` and `apiUrls.development` in
-[`assets/scripts/config.js`](assets/scripts/config.js).  With
-`apiUrls` set, developers may rely on `apiUrl` as the base for API
-URLs.
+| As a ... | I want ... |
+| -------- | ------------- |
+| user   | to keep track of my progress |
+| user   | to play tic-tac-toe |
+| user   | the game to decide end game results |
+| user   | restart my game |
+| user   | the game to keep track of player's turns |
 
-### Styles
+### Wireframe
+One of the requirements involved creating a Single Page Application (SPA). For my research of SPAs, I looked at two of my most used applications, *Discord* and *Slack*. From those applications, I really enjoyed the left-side navigation and their ease of use.
 
-Developers should store styles in [`assets/styles`](assets/styles) and load them
-from [`assets/styles/index.scss`](assets/styles/index.scss). Bootstrap version 3 is
-included in this template.
+![Wireframe](\assets\pictures\Tic-Tac-Toe-WireFrame.jpg "Tic-Tac-Toe Wireframe")
 
-### Forms and Using `getFormFields`
+### Progression
+After the research/design stage, I decided to start tackling my project. I started off with the *User API Functionality* because I assumed it was probably the easiest task to handle. Afterwards, I created my logic for my *Gameboard* and within that I created rules and feedback for when you're playing the game. The rules of the game included rotating players (X then O then X then etc.), inability to play a previous played spot, checking for a winner/draw, communication with our *Game API*. Within the rules logic, I implemented a *winning permutation* array and *win checker* which compares our current game with the *winning permutation* to see if the game is over and if there is a winner. We can change the win-condition rules of the game by simpling changing the *winning permutation*. My *gamelog* was created in conjunction with the *Game API*. For CSS, I wanted to keep the layout simple and intuitive. Since our only game mechanic is clicking things, I wanted to make the clicking feel better by adding feedback to all buttons.
 
-Developers should use [getFormFields](get-form-fields.md) to retrieve form data
-to send to an API.
+#### Challenges
+Throughout this project, I was met with challenges ranging from syntax errors, async errors, to CSS/Bootstrap compatability issues. The greatest challenge involved exporting an array, where the export would fail with no error from the console log. With the help of the instructors, we were able to nail down the problem to circle-dependency and async loading. I was able to workaround this problem by getting rid of the circle-dependency.
 
-### Deployment
+#### Checklist
+For a more indepth look at my project progression, I created a checklist on
+google sheets to help keep track of my progress. You can visit my checklist
+[here](https://docs.google.com/spreadsheets/d/1OJRPkFwx4X7panJAvG54ew7Z-lzdbdHtnmbg_WYDxzU/edit?usp=sharing "Project Checklist")
 
-To deploy a browser-template based SPA, run `grunt deploy`.
-
-## Adding Images
-
-To add images to your project, you must store them in the `public` directory.
-To use the image in HTML or CSS, write the path to the image like this:
-
-```html
-<img src="public/cat.jpg">
-```
-or
-```css
-#my-cool-div {
-  background-image: url('public/cat.jpg')
-}
-```
-
-Note that there's no `./` or `/` in front of `public/filename.jpg`.
-
-## Adding Fonts
-
-To add custom fonts to your app, you can either use a CDN like Google Fonts, or
-you can download the fonts and save them in the `public` directory. If you use
-the former method, follow the directions on the website providing the fonts.
-
-For local fonts, put the files in `public`, and then import and use them in a
-`.scss` file like this:
-
-```scss
-@font-face {
-  font-family: 'Nature Beauty';
-  src: url('public/Nature-Beauty.ttf') format('truetype');
-}
-
-.element-with-custom-font {
-  font-family: 'Nature Beauty';
-}
-```
-
-## Tasks
-
-Developers should run these often!
-
-- `grunt nag` or just `grunt`: runs code quality analysis tools on your code
-    and complains
-- `grunt make-standard`: reformats all your code in the JavaScript Standard Style
-- `grunt <server|serve|s>`: generates bundles, watches, and livereloads
-- `grunt build`: place bundled styles and scripts where `index.html` can find
-    them
-- `grunt deploy`: builds and deploys master branch
-
-
-## Additional Resources
-
-- [Modern Javascript Explained for Dinosaurs](https://medium.com/@peterxjang/modern-javascript-explained-for-dinosaurs-f695e9747b70)
-- [Making Sense of Front End Build Tools](https://medium.freecodecamp.org/making-sense-of-front-end-build-tools-3a1b3a87043b)
-
-## [License](LICENSE)
-
-1. All content is licensed under a CC­BY­NC­SA 4.0 license.
-1. All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
+### Future Features
+- Responsive Design (especially Mobile)
+- Two Player Functionality
+- New Game Mode: Ultimate Tic-Tac-Toe
+- More In-depth Statitics
