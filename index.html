@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Tic Tac Toe</title>
+      <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga&display=swap" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+  <body class="container-fluid">
+    <div class="row">
+      <header id="title" class="col-3">
+        <a id='logo' href='#login-tab'>
+          <h1><strong>#Tic-Tac-Toe</strong></h1>
+        </a>
+        <nav class="nav flex-column nav-pills" id="sideBar" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="login-tab" data-toggle="pill" href="#user-login" role="tab" aria-controls="user-login" aria-selected="true"> Login </a>
+          <a class="nav-link unauthenticated" id="play-tab" data-toggle="pill" href="#game-play" role="tab" aria-controls="game-play" aria-selected="false"> Play </a>
+          <a class="nav-link unauthenticated" id="log-tab" data-toggle="pill" href="#gamelog" role="tab" aria-controls="gamelog" aria-selected="false"> Game Log </a>
+          <a class="nav-link unauthenticated" id="settings-tab" data-toggle="pill" href="#user-settings" role="tab" aria-controls="user-settings" aria-selected="false"> User Settings </a>
+          <button class="btn btn-outline-danger unauthenticated" id="sign-out"> Sign Out </button>
+        </nav>
+      </header>
+      <main class="col-9">
+        <div class="tab-content" id="tabContent">
+          <div id="user-message"> </div>
+          <div id="user-login" class="tab-pane fade show active" role="tabpanel" aria-lablledby="login-tab">
+            <form id="sign-in">
+              <div class="form-group">
+                <label for="signInEmail">Email Address:</label>
+                <input required id="signInEmail" name="credentials[email]" type="text" placeholder="you@example.com"  >
+              </div>
+              <div class="form-group">
+                <label for="signInPw">Password:</label>
+                <input required id="signInPw" name="credentials[password]" type="password" placeholder="password">
+              </div>
+              <button class="btn" type="submit"> Login </button>
+              <button type="button" class="btn" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
+              <small class="form-text text-muted">No Account? Signup for free!</small>
+            </form>
+            <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Sign Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form id="sign-up">
+                    <div class="modal-body">
+                      <input required aria-describedby="emailHelp" name="credentials[email]" type="text" placeholder="you@example.com">
+                      <small id="emailHelp" class="form-text text-muted">Please don't use a real email!</small>
+                      <input required aria-describedby="passwordHelp" name="credentials[password]" type="password" placeholder="password">
+                      <small id="passwordHelp" class="form-text text-muted">Please don't use a real password!</small>
+                      <input required name="credentials[password_confirmation]" type="password" placeholder="confirm password">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn">Sign Up</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div id="user-settings" class="tab-pane fade" role="tabpanel" aria-labelledby="settings-tab">
+            <form id="changepw">
+              <input required name="passwords[old]" type="password" placeholder="old password">
+              <input required name="passwords[new]" type="password" placeholder="new password">
+              <button type="submit" class="btn"> change password </button>
+            </form>
+          </div>
+          <br>
+          <div id="game-play" class="tab-pane fade" role="tabpanel" aria-labelledby="play-tab">
+            <div id="gameboard" class="row">
+              <div data-cell-index='0' class="col-4 board-box"></div>
+              <div data-cell-index='1' class="col-4 board-box"></div>
+              <div data-cell-index='2' class="col-4 board-box"></div>
+              <div data-cell-index='3' class="col-4 board-box"></div>
+              <div data-cell-index='4' class="col-4 board-box"></div>
+              <div data-cell-index='5' class="col-4 board-box"></div>
+              <div data-cell-index='6' class="col-4 board-box"></div>
+              <div data-cell-index='7' class="col-4 board-box"></div>
+              <div data-cell-index='8' class="col-4 board-box"></div>
+            </div>
+            <div class="row justify-content-center">
+            <button id="create-board" class="btn"> New Board </button>
+            </div>
+          </div>
+          <br>
+          <div id='gamelog' class="tab-pane fade" role="tabpanel" aria-labelledby="log-tab">
+            <form id="game-log">
+              <input name="id" type="number" placeholder="game ID (empty to search all)">
+              <button class="btn" type="submit"> Search Games </button>
+              <br>
+              <div class='form-check form-check-inline'>
+                <input type='radio' class='form-check-input' name="gameStatus" id="allStatus" value="all" checked>
+                <label class='form-check-label' for='allStatus'> All </label>
+              </div>
+              <div class='form-check form-check-inline'>
+                <input type='radio' class='form-check-input' name="gameStatus" id="finishedGames" value='true'>
+                <label class='form-check-label' for='finishedGames'> Finished </label>
+              </div>
+              <div class='form-check form-check-inline'>
+                <input type='radio' class='form-check-input' name="gameStatus" id="unfinishedGames" value='false'>
+                <label class='form-check-label' for='unfinishedGames'> Unfinished </label>
+              </div>
+            </form>
+            <div id='gameLogStats'>
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope='col'>User ID</th>
+                  <th scope='col'>Games Played</th>
+                  <th scope='col'>Games Finished</th>
+                  <th scope='col'>Games Won</th>
+                </tr>
+                </thead>
+                <tbody id='totalStats'>
+                </tbody>
+              </table>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope='col'>#</th>
+                    <th scope='col'>ID</th>
+                    <th scope='col'>Game Info</th>
+                    <th scope='col'>Finished Game</th>
+                    <th scope='col'>Who Won?</th>
+                  </tr>
+                </thead>
+                <tbody id='tableContent'>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
