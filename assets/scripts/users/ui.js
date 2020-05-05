@@ -32,14 +32,15 @@ const signInFailure = error => {
 }
 
 const signOutSuccess = () => {
-  $('#user-message').removeClass()
-  $('#user-message').addClass('success')
-  $('#user-message').text('Sign Out success!')
-  $('.unauthenticated').css("display","none")
   storage.store = null
   storage.game = null
   storage.log = null
-  window.location.reload()
+  $('#user-message').removeClass()
+  $('#user-message').addClass('success')
+  $('#user-message').text('Sign Out success!')
+  $('.unauthenticated').css('display', 'none')
+  $('[role=tabpanel]').attr('class', 'tab-pane fade')
+  $('#user-login').addClass('show active')
 }
 
 const signOutFailure = () => {
