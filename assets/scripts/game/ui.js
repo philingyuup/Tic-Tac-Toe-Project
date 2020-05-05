@@ -1,6 +1,7 @@
 'use strict'
 const storage = require('../store.js')
 
+// winning combinations for the game
 const winCheck = [
   [0, 1, 2],
   [3, 4, 5],
@@ -12,11 +13,13 @@ const winCheck = [
   [0, 4, 8]
 ]
 
+// creates my HTML for stats display
 const showTotalStats = () => {
   const id = storage.store.user.id
   let gamesPlayed = 0
   let gamesFinished = 0
   let gamesWon = 0
+  // checks to see if there is only one gamelog returned or multiple
   if (storage.log.games === undefined || null) {
     gamesPlayed = 1
     if (storage.log.game.over === true) {
@@ -47,6 +50,7 @@ const showTotalStats = () => {
   return stats
 }
 
+// checks your query if you won (user default: player X) and saves those stats
 const logWinner = () => {
   const storeLog = storage.log.games
   if (storeLog === undefined || null) {
@@ -58,6 +62,8 @@ const logWinner = () => {
   }
 }
 
+// compares any board with our winCheck array to see if there is a winning combination
+// on the board
 const checkWinner = data => {
   const cell = data.cells
   for (let i = 0; i < winCheck.length; i++) {
@@ -75,6 +81,7 @@ const checkWinner = data => {
   } return 'None'
 }
 
+// shows your query results when you try to use the gamelog
 const displayStats = () => {
   let stats
   if (storage.log.games === undefined || null) {
