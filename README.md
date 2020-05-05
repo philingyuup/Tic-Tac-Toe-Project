@@ -48,7 +48,7 @@ user stories for this project.
 ### Wireframe
 One of the requirements involved creating a Single Page Application (SPA). For my research of SPAs, I looked at two of my most used applications, *Discord* and *Slack*. From those applications, I really enjoyed the left-side navigation and their ease of use.
 
-![Wireframe](\assets\pictures\Tic-Tac-Toe-WireFrame.jpg "Tic-Tac-Toe Wireframe")
+![Wireframe](https://github.com/philingyuup/Tic-Tac-Toe-Project/blob/master/assets/pictures/Tic-Tac-Toe-WireFrame.jpg "Tic-Tac-Toe Wireframe")
 
 ### Progression
 After the research/design stage, I decided to start tackling my project. I started off with the *User API Functionality* because I assumed it was probably the easiest task to handle. Afterwards, I created my logic for my *Gameboard* and within that I created rules and feedback for when you're playing the game. The rules of the game included rotating players (X then O then X then etc.), inability to play a previous played spot, checking for a winner/draw, communication with our *Game API*. Within the rules logic, I implemented a *winning array* and a function which compares our current game with the *winning array* to see if the game is over and if there is a winner. We can change the win-condition rules of the game by simpling changing the *winning array*. My *gamelog* was created in conjunction with the *Game API*. For CSS, I wanted to keep the layout simple and intuitive. Since our only game mechanic is clicking things, I wanted to make the clicking feel better by adding feedback to all buttons.
